@@ -19,7 +19,7 @@ def matrixReshape(mat, r, c):
     c_count = 0
 
     #   1.
-    if (r * c) > (mat_row_length * mat_col_length):
+    if (r * c) != (mat_row_length * mat_col_length):
         return mat
 
     #   2.
@@ -36,8 +36,8 @@ def matrixReshape(mat, r, c):
 
     return result
 
-mat = [[1,2,5],[3,4,6]]
-r = 3
-c = 2
+mat = [[1,2]]
+r = 1
+c = 1
 
 print(matrixReshape(mat, r, c))
