@@ -56,3 +56,16 @@ obj.addWord("bad")
 obj.addWord("dad")
 obj.addWord("mad")
 print(obj.search("mad"))
+
+"""
+Approach:
+
+Trie. If char not exist in children, make new TrieNode. Set bool at end of word
+
+Time    : O(26^n)
+Space   : O(n)
+
+Takeaway:
+
+Understand tries, dfs. If wildcard, skip and check all children
+"""
