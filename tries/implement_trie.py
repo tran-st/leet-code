@@ -52,3 +52,54 @@ class Trie:
 obj = Trie()
 obj.insert("a")
 print(obj.search("a"))
+
+"""
+Approach:
+
+Trie() val and endOfWord
+insert(word) append val into children
+search(word) search all children until end of string. Check endOfWord
+startsWith(word) same as search without endOfWord
+
+class TrieNode:
+    def __init__():
+        self.children = {}
+        self.endOfWord = False
+
+class Trie:
+    def __init__():
+        self.root = TrieNode()
+
+    def insert(word):
+        current = self.root
+
+        for c in word:
+            if c not in current.children:
+                currennt.children[c] = TrieNode()
+
+            current = current.children[c]
+
+        current.endOfWord = True
+
+    def search(word):
+        current = self.root
+
+        for c in word:
+            if c not in current.children:
+                return False
+
+            current = current.children[c]
+
+        return current.endOfWord
+
+    def startsWith(prefix):
+        current = self.root
+
+        for c in prefix:
+            if c not in current.children:
+                return False
+
+            current = current.children[c]
+
+        return True
+"""
