@@ -90,3 +90,74 @@ board = [["o","a","b","n"],
 words =["oa","oaa"]
 
 print(findWords(board, words))
+
+"""
+Approach:
+
+Create prefix tree based on words. Backtrack dfs on each cell
+
+Takeaway:
+
+Understand prefix trees. Understand backtrack
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
+
+    def addWord(self, word):
+        current = self
+
+        for c in word:
+            if c not in current.children:
+                current.children[c] = TrieNode()
+
+            current = current.children[c]
+
+        current.endOfWord = True
+
+    def searchWords(board, words):
+        row_length = len(board)
+        col_length = len(board[0])
+        visited = set()
+        result = set()
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        root = TrieNode()
+
+        for word in words:
+            root.addWord(word)
+
+        def dfs(row, col, trieNode, word):
+            if (row not in range(row_length) or
+                col not in range(col_length) or
+                (row, col) in visited or
+                board[row][col] not in trieNode.children):
+                return False
+
+            visited.add((row, col))
+
+            c = board[row][col]
+            word += trieNode.children[c]
+            trieNode = trieNode.children[c]
+
+            if trieNode.endOfWord:
+                result.add(word)
+                trieNode.endOfWord = False // Redundant
+
+            if not node.children.keys():
+                del node.children[char]
+
+            for x, y in directions:
+                dfs(row + x, col + y, trieNode, word)
+
+            visited.remove(row, col)
+
+
+        for i in range(row_length):
+            for j in range(row_length):
+                dfs(i, j, root, "")
+
+
+"""
