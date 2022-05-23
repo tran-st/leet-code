@@ -46,3 +46,44 @@ board = [["A","A","A","A","A","A"],["A","A","A","A","A","A"],["A","A","A","A","A
 word = "AAAAAAAAAAAAABB"
 
 print(exist(board, word))
+
+"""
+Approach:
+
+DFS. Check each cell for matching char. 
+
+Takeaway:
+
+Understand grids and dfs
+
+def exist(grid, word):
+    row_length = len(grid)
+    col_length = len(grid[0])
+    visited = set()
+
+    def dfs(row, col, i):
+        if i == len(word):
+            return True
+            
+        if (row not in range(row_length) or
+            col not in range(col_length) or
+            (row, col) in visited or
+            word[i] != grid[row][col]):
+            return False
+
+        visited.add((row, col))
+
+        result = (dfs(row - 1, col, i + 1) or
+                  dfs(row + 1, col, i + 1) or
+                  dfs(row, col - 1, i + 1) or
+                  dfs(row, col + 1, i + 1))
+
+        visited.remove((row, col))
+
+    for i in range(row_length):
+        for j in range(col_length):
+            if dfs(i, j, 0):
+                return True
+
+    return False
+"""
