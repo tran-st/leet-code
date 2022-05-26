@@ -61,15 +61,6 @@ Time  : O(n * m)
 Space : O(n * m)
 """
 
-grid = [
-  ["1","1","0","0","0"],
-  ["1","1","0","0","0"],
-  ["0","0","1","0","0"],
-  ["0","0","0","1","1"]
-]
-
-
-
 def numIslands2(grid):
     row_length = len(grid)
     col_length = len(grid[0])
@@ -109,4 +100,60 @@ Time    : O(n * m)
 Space   : O(1)
 """
 
-print(numIslands2(grid))
+def numIslands3(grid):
+    if grid is None:
+        return grid
+
+    row_length = len(grid)
+    col_length =  len(grid[0])
+    directions = [(-1,0), (1,0), (0,-1), (0,1)]
+    count = 0
+
+    def dfs(row, col):
+        if (row not in range(row_length) or
+            col not in range(col_length) or
+            grid[row][col] != "1"):
+            return
+
+        grid[row][col] = "#"
+
+        for x, y in directions:
+            dfs(row + x, col + y)
+
+        return
+
+    for i in range(row_length):
+        for j in range(col_length):
+            if grid[i][j] == "1":
+                dfs(i, j)
+
+                count += 1
+
+    return count
+
+"""
+Approach:
+
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+
+DFS. Check if grid[row][col] is legal. Check every direction
+
+Time    : O(n * m)
+Space   : O(1)
+
+Takeaway:
+
+Understand DFS, grid traversal
+"""
+
+grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+
+print(numIslands3(grid))
