@@ -93,3 +93,13 @@ numCourses = 4
 prerequisites = [[2,0],[1,0],[3,1],[3,2],[1,3]]
 
 print(canFinish2(numCourses, prerequisites))
+
+"""
+def canFinish3(numCourses, prerequisites):
+
+Approach:
+
+DFS. Adjacency list and traverse each child. If loop or can't visit all, return false
+
+Time    : O()
+"""
