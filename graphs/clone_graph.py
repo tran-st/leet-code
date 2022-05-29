@@ -44,3 +44,33 @@ node = Node(2)
 node.neighbors.append(Node(4))
 
 print(cloneGraph(node))
+
+"""
+def cloneGraph(node):
+    graph_hash = {}
+
+    def dfs(node):
+        if node in graph_hash:
+            return graph_hash[node]
+
+        node_copy = Node(node.val)
+        graph_hash[node] = node_copy
+
+        for n in node.neighbors:
+            node_copy.neighbors.append(dfs(n))
+
+        return node_copy
+
+    result = dfs(node) if node else None
+
+Approach:
+
+Make a clone of current node. For each of it's neighbors, make another clone
+
+Time    : O(n)
+Space   : O(n)
+
+Takeaway:
+
+Understand graph and neighbor traversal
+"""
