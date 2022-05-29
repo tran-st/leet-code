@@ -57,7 +57,7 @@ Time    : O(n * m)
 Space   : O(n * m)
 """
 
-heights = [[1,2,2,3,5],
+heights =        [[1,2,2,3,5],
                   [3,2,3,4,4],
                   [2,4,5,3,1],
                   [6,7,1,4,5],
@@ -117,3 +117,55 @@ Space   : O(n * m)
 """
 
 print(pacificAtlantic2(heights))
+
+"""
+def pacificAtlantic3(grid):
+    if not grid:
+        return None
+
+    row_length = len(grid)
+    col_length = len(grid[0])
+    pacific = set()
+    atlantic = set()
+    result = []
+
+    directions = [(-1,0), (1,0), (0,-1), (0,1)]
+
+    def dfs(row, col, set, previous):
+        if (row not in range(row_length) or
+            col not in range(row_length) or
+            (row, col) in set or
+            grid[row][col] < previous):
+            return
+
+        set.add((row, col))
+
+        for x, y in directions:
+            dfs(row + x, col + y, set, grid[row][col])
+
+    for i in range(row_length):
+        dfs(i, 0, pacific, grid[i][0])
+        dfs(i, col_length - 1, atlantic, grid[i][col_length - 1])
+
+    for j in range(col_length):
+        dfs(0, j, pacific, grid[0][j])
+        dfs(0, row_length - 1, atlantic, grid[0][row_length - 1])
+
+    for x, y in pacific:
+        if (x, y) in atlantic:
+            result.append((x, y))
+
+    return result
+
+
+Approach:
+
+Check each border from the outside going in. How many cells can reach each ocean?
+
+Time    : O(n * m)
+Space   : O(n * m)
+
+Takeaway:
+
+Understand graph traversal
+"""
