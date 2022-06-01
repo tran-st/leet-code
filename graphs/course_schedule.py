@@ -96,10 +96,47 @@ print(canFinish2(numCourses, prerequisites))
 
 """
 def canFinish3(numCourses, prerequisites):
+    # Initialize hash
+    prerequisites_hash = { i:[] for i in range(numCourses) }
+
+    # Fill hash
+    for course, prerequisite in prerequisites:
+        prerequisites_hash[course].append(prerequisite)
+
+    visited = set()
+
+    def dfs(course):
+        if course in visited:
+            return False
+
+        if prerequisites_hash[course] == []:
+            return True
+
+        visisted.add(course)
+
+        for prerequisite in prerequisites_hash[course]:
+            if not dfs(course):
+                return False
+
+        visited.remove(course)
+        prerequisites_hash[course] = []
+
+    for i in range(numCourses):
+        if not dfs(i):
+            return False
+
+    return True
+
+
 
 Approach:
 
 DFS. Adjacency list and traverse each child. If loop or can't visit all, return false
 
-Time    : O()
+Time    : O(n + p)
+Space   : O(n + p)
+
+Takeaway:
+
+Understand ajdacency list and dfs
 """
