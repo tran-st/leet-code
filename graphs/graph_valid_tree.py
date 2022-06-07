@@ -47,31 +47,31 @@ print(valid_tree(n, edges))
 
 """
 def valid_tree(n, edges):
-    // Empty tree technically valid
+    # Empty tree technically valid
     if not n:
         return True 
 
-    // Initialize adjacency list
+    # Initialize adjacency list
     adjacency = { i:[] for i in range(n) }
 
-    // Fill adjacency list
+    # Fill adjacency list
     for vertex, edge in edges:
         adjacency[vertex].append(edge)
         adjacency[edge].append(vertex)
 
-    // Track visited
+    # Track visited
     visited = set()
 
     def dfs(i, prev):
-        // Loop detected
+        # Loop detected
         if i in visited:
             return False
 
         visited.add(i)
 
-        // Visit all children
+        # Visit all children
         for vertex in adjacency[i]:
-            // Don't visit if previous
+            # Don't visit if previous
             if vertex == prev:
                 continue
             if not dfs(vertex, i):
@@ -89,4 +89,17 @@ Space   : O(E + V)
 Takeaway:
 
 Understand graph traversal, dfs
+"""
+
+"""
+400 million users x 300 bytes
+120 billion bytes
+120 gb per day
+120 gb / 30 = 4 gb
+4 gb / 4000
+.001
+1 MBs
+
+120 gb x 400 days = 48,000 gb x 5 years = 250,000 gb = 250 tb
+400 m tweets x 400 days = 160,000 m tweets x 5 years 800,000,000,000 tweets
 """
