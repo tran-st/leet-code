@@ -48,3 +48,39 @@ Space   : O(n)
 """
 
 print(climbStairs(0))
+
+"""
+def climbStairs2(n):
+    one = 1
+    two = 1
+
+    for _ in range(n - 1):
+        temp = one
+        one = one + two
+        two = temp
+
+    return one
+
+Approach:
+
+Recursion. DFS until base case. dfs(n - 1) + dfs(n - 2)
+
+Time    : O(n) with memoization
+Space   : O(n)
+
+Takeaway:
+
+Understand basic recursion, DFS
+
+Approach 2:
+
+DP. Start from top of staircase. Last two steps will always take one action, so that's the base case.
+Add up previous two values
+
+Time    : O(n)
+Space   : O(1)
+
+Takeaway:
+
+Understand basic DP
+"""
